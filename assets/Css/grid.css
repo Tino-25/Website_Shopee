@@ -1,0 +1,568 @@
+/*  cách 10 năm độ phân giải máy tính là 1024px => dùng 960px grid 
+    ngày nay thường dùng grid 1200px vì độ phân giải màn hình máy tính ngày nay đều hỗ trợ 
+    các con số (1200px, 960px thường nhỏ hơn độ phân giải màn hình => để tạo ra khoảng cách giữa 2 bên màn hình
+    nhưng nếu nó sát màn hình thì nên đặt lại chiều rộng cho các thiết bị để chiều ngang luôn luôn có 1 khoảng hở bên trái và phải
+    các con số này chia hết cho 2,3,4,5,6,8,10,12,15,16,20,24,30,40,48,60,80, 120 */
+
+.grid {
+    /* display: block; tương đương width: 100% ==> bằng 100% chiều ngang thẻ cha
+tuy nhiên khai báo cả 2 như vậy cho chắc đề phòng thẻ không có tính chất block */
+    width: 100%;
+    display: block;
+    padding: 0;
+    /* reset padding: tránh ảnh hưởng tới grid */
+}
+
+
+/* class wide chỉ dùng cho grid */
+
+.grid.wide {
+    /* đi cùng với grid thì chiều ngang là 100% nhưng lớn nhất là 1350 
+    và không lớn hơn 1350px được */
+    max-width: 1350px;
+    /* layout mà có khi có width: 100% thì tất nhiên không cần căn giữa
+    nhưng nếu layout nhỏ hơn chiều dài màn hình thì cần căn giữa
+    vì nếu có sử dụng max-width thì lúc này đã nhỏ hơn chiều ngang màn hình 
+    và cần căn giữa theo trái phải */
+    margin: 0 auto;
+}
+
+
+/* LƯU Ý CÁC CLASS VIẾT NGOÀI @media LÀ VIẾT CHO MOBILE còn lại thì tuỳ vào @media đó */
+
+
+/* row chứa column */
+
+.row {
+    /* cho các item nằm theo chiều ngang */
+    display: flex;
+    /* khi tổng chiều ngang item vượt quá chiều ngang row thì cho xuống dòng */
+    flex-wrap: wrap;
+    /* 2 dòng dưới là để phần tử dài hơn phần tử cha 4px về bên trái và 4px về bên phải
+    => nó dài hơn phần tử cha 8px
+    làm như vậy là để chứa gutters 2 bên phải và trái nhằm loại bỏ nó  
+    column padding bao nhiêu thì ông row margin âm bấy nhiêu
+    4px này là ở mobile còn ở tablet hay pc thì ở @media ở dưới*/
+    margin-left: -4px;
+    margin-right: -4px;
+}
+
+.row.no-gutters {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/* column trên mobile
+ở margin âm ở trên phải bằng với padding ở col này */
+
+.col {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.row.no-gutters .col {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* ẩn đi cột khi hiển thị trên mobile */
+
+.c-0 {
+    display: none;
+}
+
+
+/* từ c-1 đến c-12 tương đương kích thước cột cơ sở 
+cột cơ sở là cột có kích thước chia theo 12 cột 
+vd: c-1 chiếm 1 cột cơ sở
+    c-12 chiếm 12 cột cơ sở*/
+
+
+/* flex: row string basic
+flex: 0 0 8.33333%; => set chiều ngang là 8.33333% nếu flex-direction là row
+flex: 0 0 8.33333%; => set chiều dọc là 8.33333% nếu flex-direction là column*/
+
+.c-1 {
+    flex: 0 0 8.33333%;
+    /* chiều ngang tối đa không được vượt quá 8.33333% */
+    max-width: 8.33333%;
+}
+
+.c-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+}
+
+.c-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.c-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+}
+
+.c-5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%;
+}
+
+.c-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.c-7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%;
+}
+
+.c-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+}
+
+.c-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+.c-10 {
+    flex: 0 0 83.33333%;
+    max-width: 83.33333%;
+}
+
+.c-11 {
+    flex: 0 0 91.66667%;
+    max-width: 91.66667%;
+}
+
+.c-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.c-o-1 {
+    margin-left: 8.33333%;
+}
+
+.c-o-2 {
+    margin-left: 16.66667%;
+}
+
+.c-o-3 {
+    margin-left: 25%;
+}
+
+.c-o-4 {
+    margin-left: 33.33333%;
+}
+
+.c-o-5 {
+    margin-left: 41.66667%;
+}
+
+.c-o-6 {
+    margin-left: 50%;
+}
+
+.c-o-7 {
+    margin-left: 58.33333%;
+}
+
+.c-o-8 {
+    margin-left: 66.66667%;
+}
+
+.c-o-9 {
+    margin-left: 75%;
+}
+
+.c-o-10 {
+    margin-left: 83.33333%;
+}
+
+.c-o-11 {
+    margin-left: 91.66667%;
+}
+
+
+/* >= Tablet */
+
+@media (min-width: 740px) {
+    /* tablet thì có gutters lớn hơn mobile nên cho là 8px thay vì 4px */
+    .row {
+        margin-left: -8px;
+        margin-right: -8px;
+    }
+    .col {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    /* dùng để ẩn đi 1 cột trên tablet khi cho cột nào ẩn thì bỏ class này vào */
+    .m-0 {
+        display: none;
+    }
+    /* dùng class này cho thẻ nào thì nó cũng có tính chất block */
+    .m-1,
+    .m-2,
+    .m-3,
+    .m-4,
+    .m-5,
+    .m-6,
+    .m-7,
+    .m-8,
+    .m-9,
+    .m-10,
+    .m-11,
+    .m-12 {
+        display: block;
+    }
+    .m-1 {
+        flex: 0 0 8.33333%;
+        max-width: 8.33333%;
+    }
+    .m-2 {
+        flex: 0 0 16.66667%;
+        max-width: 16.66667%;
+    }
+    .m-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .m-4 {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+    .m-5 {
+        flex: 0 0 41.66667%;
+        max-width: 41.66667%;
+    }
+    .m-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .m-7 {
+        flex: 0 0 58.33333%;
+        max-width: 58.33333%;
+    }
+    .m-8 {
+        flex: 0 0 66.66667%;
+        max-width: 66.66667%;
+    }
+    .m-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    .m-10 {
+        flex: 0 0 83.33333%;
+        max-width: 83.33333%;
+    }
+    .m-11 {
+        flex: 0 0 91.66667%;
+        max-width: 91.66667%;
+    }
+    .m-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .m-o-1 {
+        margin-left: 8.33333%;
+    }
+    .m-o-2 {
+        margin-left: 16.66667%;
+    }
+    .m-o-3 {
+        margin-left: 25%;
+    }
+    .m-o-4 {
+        margin-left: 33.33333%;
+    }
+    .m-o-5 {
+        margin-left: 41.66667%;
+    }
+    .m-o-6 {
+        margin-left: 50%;
+    }
+    .m-o-7 {
+        margin-left: 58.33333%;
+    }
+    .m-o-8 {
+        margin-left: 66.66667%;
+    }
+    .m-o-9 {
+        margin-left: 75%;
+    }
+    .m-o-10 {
+        margin-left: 83.33333%;
+    }
+    .m-o-11 {
+        margin-left: 91.66667%;
+    }
+}
+
+
+/* PC medium resolution > */
+
+@media (min-width: 1113px) {
+    .row {
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+    .row.sm-gutter {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    .col {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .row.sm-gutter .col {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .l-0 {
+        display: none;
+    }
+    .l-1,
+    .l-2,
+    .l-2-4,
+    .l-3,
+    .l-4,
+    .l-5,
+    .l-6,
+    .l-7,
+    .l-8,
+    .l-9,
+    .l-10,
+    .l-11,
+    .l-12 {
+        display: block;
+    }
+    .l-1 {
+        flex: 0 0 8.33333%;
+        max-width: 8.33333%;
+    }
+    .l-2 {
+        flex: 0 0 16.66667%;
+        max-width: 16.66667%;
+    }
+    .l-2-4 {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    .l-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .l-4 {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+    .l-5 {
+        flex: 0 0 41.66667%;
+        max-width: 41.66667%;
+    }
+    .l-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .l-7 {
+        flex: 0 0 58.33333%;
+        max-width: 58.33333%;
+    }
+    .l-8 {
+        flex: 0 0 66.66667%;
+        max-width: 66.66667%;
+    }
+    .l-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    .l-10 {
+        flex: 0 0 83.33333%;
+        max-width: 83.33333%;
+    }
+    .l-11 {
+        flex: 0 0 91.66667%;
+        max-width: 91.66667%;
+    }
+    .l-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .l-o-1 {
+        margin-left: 8.33333%;
+    }
+    .l-o-2 {
+        margin-left: 16.66667%;
+    }
+    .l-o-3 {
+        margin-left: 25%;
+    }
+    .l-o-4 {
+        margin-left: 33.33333%;
+    }
+    .l-o-5 {
+        margin-left: 41.66667%;
+    }
+    .l-o-6 {
+        margin-left: 50%;
+    }
+    .l-o-7 {
+        margin-left: 58.33333%;
+    }
+    .l-o-8 {
+        margin-left: 66.66667%;
+    }
+    .l-o-9 {
+        margin-left: 75%;
+    }
+    .l-o-10 {
+        margin-left: 83.33333%;
+    }
+    .l-o-11 {
+        margin-left: 91.66667%;
+    }
+}
+
+
+/* Tablet - PC low resolution */
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .wide {
+        width: 644px;
+    }
+}
+
+
+/* PC low resolution trở lên
+thì ta dùng với wide */
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+    .wide {
+        width: 984px;
+    }
+    .wide .row {
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+    .wide .row.sm-gutter {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    .wide .col {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .wide .row.sm-gutter .col {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .wide .l-0 {
+        display: none;
+    }
+    .wide .l-1,
+    .wide .l-2,
+    .wide .l-2-4,
+    .wide .l-3,
+    .wide .l-4,
+    .wide .l-5,
+    .wide .l-6,
+    .wide .l-7,
+    .wide .l-8,
+    .wide .l-9,
+    .wide .l-10,
+    .wide .l-11,
+    .wide .l-12 {
+        display: block;
+    }
+    .wide .l-1 {
+        flex: 0 0 8.33333%;
+        max-width: 8.33333%;
+    }
+    .wide .l-2 {
+        flex: 0 0 16.66667%;
+        max-width: 16.66667%;
+    }
+    .wide .l-2-4 {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    .wide .l-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .wide .l-4 {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+    .wide .l-5 {
+        flex: 0 0 41.66667%;
+        max-width: 41.66667%;
+    }
+    .wide .l-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .wide .l-7 {
+        flex: 0 0 58.33333%;
+        max-width: 58.33333%;
+    }
+    .wide .l-8 {
+        flex: 0 0 66.66667%;
+        max-width: 66.66667%;
+    }
+    .wide .l-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    .wide .l-10 {
+        flex: 0 0 83.33333%;
+        max-width: 83.33333%;
+    }
+    .wide .l-11 {
+        flex: 0 0 91.66667%;
+        max-width: 91.66667%;
+    }
+    .wide .l-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .wide .l-o-1 {
+        margin-left: 8.33333%;
+    }
+    .wide .l-o-2 {
+        margin-left: 16.66667%;
+    }
+    .wide .l-o-3 {
+        margin-left: 25%;
+    }
+    .wide .l-o-4 {
+        margin-left: 33.33333%;
+    }
+    .wide .l-o-5 {
+        margin-left: 41.66667%;
+    }
+    .wide .l-o-6 {
+        margin-left: 50%;
+    }
+    .wide .l-o-7 {
+        margin-left: 58.33333%;
+    }
+    .wide .l-o-8 {
+        margin-left: 66.66667%;
+    }
+    .wide .l-o-9 {
+        margin-left: 75%;
+    }
+    .wide .l-o-10 {
+        margin-left: 83.33333%;
+    }
+    .wide .l-o-11 {
+        margin-left: 91.66667%;
+    }
+}
